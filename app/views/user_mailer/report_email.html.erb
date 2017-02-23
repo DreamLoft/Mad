@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.username %></h1>
+    <h4> Here is the list of people who have not submitted their timesheet today :- </h4>
+    <% @leftuser.each do |user| %>
+    <p><%= user.username %> (<%= user.designation %>)</p>
+    <% end %>
+  </body>
+</html>

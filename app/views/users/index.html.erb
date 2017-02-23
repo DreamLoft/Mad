@@ -1,0 +1,55 @@
+<h1>Listing Users</h1>
+
+<ul class="list-group">
+<% @users.each do |user| %>
+<li class="list-group-item">
+<table class = "table table-hover ">
+  <tr>
+    <td style="width: 15%;">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <%= user.username %>
+      <% if (user.approved== true)%>
+      (<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>)
+      <% end %>
+    </td>
+    <td style="width: 15%;">
+      <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>  <%= user.designation %>
+    </td>
+    <td style="width: 15%;">
+      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  <%= user.email %>
+    </td>
+    <td style="width: 10%;">
+      <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>  <%= user.mobileno %>
+    </td>
+
+    <td style="width: 5%;">
+      <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>  <%= user.employee_id %>
+    </td>
+    <td style="width: 10%;">
+      <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>  <%= user.weight %>  Points
+    </td>
+    <td style="width: 5%;"><%= link_to 'Details', user_path(user) %></td>
+    <td style="width: 5%;"><%= link_to 'Edit',   edit_user_path(user) %></td>
+
+  </tr>
+</table>
+</li>
+<% end %>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+<div class="apple_pagination">
+<%= will_paginate @users , :container => false %>
+  </div>
