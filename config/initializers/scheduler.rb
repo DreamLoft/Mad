@@ -9,6 +9,6 @@ s = Rufus::Scheduler.singleton
 #
 s.every '24h' , :first_at => "#{Date.today} 19:35:00 +0530" do
 
-  @user = User.find_by(email: "sharbani.samanta@quantumcs.com")
+  @user = User.find(2)
   UserMailer.report_email(@user).deliver_now
 end
