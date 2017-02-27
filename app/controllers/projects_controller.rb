@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   #skip_before_action :verify_authenticity_token ,only: [:index, :show, :new, :edit, :create, :update , :destroy]
   def index
 
-  @projects = Project.order('created_at DESC').paginate(:page => params[:page])
+  @projects = Project.where(:is_active => true).order('created_at DESC').paginate(:page => params[:page])
 
   end
 
@@ -44,6 +44,7 @@ class ProjectsController < ApplicationController
         @projectmanagers=User.select {|a| a.is_project_manager == true}
         @projectleads= User.select {|a| a.is_project_lead == true}
     @project = Project.new(project_params)
+    @project.is_active= true
       if @project.save
         redirect_to @project, notice: 'Project was successfully created.'
          #Pusher.trigger('project_channel', 'add_event', @project )
@@ -69,7 +70,9 @@ end
 
 def destroy
   @project = Project.find(params[:id])
-  @project.destroy
+  Project.update(params[:id], :is_active => false )
+#  @project.is_active= false
+#  @project.destroy
       redirect_to projects_url, notice: 'Project was successfully destroyed.'
 end
 

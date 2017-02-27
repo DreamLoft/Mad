@@ -15,7 +15,7 @@ if (!@timesheets.empty?)
   @timesheets= @timesheets .sort_by { |h| h[:created_at]}.reverse
 end
   @users= User.all
-  @projects = Project.all
+  @projects = Project.where(:is_active => true)
   @tasks= Task.all
   respond_to do |format|
     format.html

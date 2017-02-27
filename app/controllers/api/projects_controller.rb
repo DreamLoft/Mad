@@ -7,28 +7,25 @@ class Api::ProjectsController < Api::ApplicationController
       end
 
         def create
-          @project = Project.new(project_params)          
+          @project = Project.new(project_params)
             if @project.save
                   render json: @project , status: :created, location: @project
-                  Pusher.trigger('project_channel', 'add_event', @project )
             else
                   render nothing: true, status: :bad_request
             end
-          
+
         end
 
           def update
           @project = Project.find(params[:id])
-
             if @project.update(project_params)
                   render json: @project , status: :ok, location: @project
-                 Pusher.trigger('project_channel', 'update_event', @project )
             else
              render json: @project.errors, status: :unprocessable_entity
             end
         end
       private
       def project_params
-        params.require(:project).permit(:jobid, :projectname,:clientname ,:startdate,:projectstatus, :user_id, :sbu, :project_lead, :project_manager, :close_remarks, :end_date)
+        params.require(:project).permit(:jobid, :projectname,:clientname ,:startdate,:projectstatus, :user_id, :sbu, :project_lead,:is_active, :project_manager, :close_remarks, :end_date)
       end
 end
