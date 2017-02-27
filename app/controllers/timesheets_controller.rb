@@ -4,12 +4,12 @@ class TimesheetsController < ApplicationController
 def index
 #@timesheets= Timesheet.all.order("created_at DESC")
 if (current_user.isadmin == true || current_user.ismanagement == true )
-  @timesheets = Timesheet.all
+  @timesheets = Timesheet.select{|a| Project.find(a.project_id).is_active == true }
 elsif (current_user.is_project_manager == true || current_user.is_project_lead== true )
 
-  @timesheets= Timesheet.select{|a|  Project.find(a.project_id).project_lead == current_user.id ||  Project.find(a.project_id).project_manager == current_user.id ||  a.user_id == current_user.id }
+  @timesheets= Timesheet.select{|a|  (Project.find(a.project_id).project_lead == current_user.id ||  Project.find(a.project_id).project_manager == current_user.id ||  a.user_id == current_user.id) && Project.find(a.project_id).is_active == true }
 else
-  @timesheets= Timesheet.select{|a| a.user_id == current_user.id }
+  @timesheets= Timesheet.select{|a| a.user_id == current_user.id && Project.find(a.project_id).is_active == true }
 end
 if (!@timesheets.empty?)
   @timesheets= @timesheets .sort_by { |h| h[:created_at]}.reverse
