@@ -10,7 +10,7 @@ def create
 @projection = Projection.new(projection_params)
     if @projection.save
       render json: @projection , status: :created, location: @project
-      
+
     else
       render json: @projection.errors, status: :unprocessable_entity
     end

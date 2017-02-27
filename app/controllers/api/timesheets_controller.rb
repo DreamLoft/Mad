@@ -21,7 +21,7 @@ def create
 
     if @timesheet.save
          render json: @timesheet, status: :created, location: @timesheet
-         Pusher.trigger('timesheet_channel', 'add_event', @timesheet)
+        # Pusher.trigger('timesheet_channel', 'add_event', @timesheet)
     else
          render json: Timesheet.find(params[:id]), status: :conflict
   end

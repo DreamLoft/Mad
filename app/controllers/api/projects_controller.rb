@@ -10,6 +10,7 @@ class Api::ProjectsController < Api::ApplicationController
           @project = Project.new(project_params)
             if @project.save
                   render json: @project , status: :created, location: @project
+
             else
                   render nothing: true, status: :bad_request
             end
@@ -20,6 +21,7 @@ class Api::ProjectsController < Api::ApplicationController
           @project = Project.find(params[:id])
             if @project.update(project_params)
                   render json: @project , status: :ok, location: @project
+
             else
              render json: @project.errors, status: :unprocessable_entity
             end
