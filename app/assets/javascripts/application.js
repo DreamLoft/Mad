@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jquery.turbolinks
 //= require turbolinks
+//= require masonry/jquery.masonry
 //= require global
 //= require d3
 //= require d3.tip

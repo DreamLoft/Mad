@@ -1,7 +1,7 @@
-var url= "http://ec2-35-154-79-14.ap-south-1.compute.amazonaws.com/api/data";
+var url= "http://ec2-35-154-49-51.ap-south-1.compute.amazonaws.com/api/data";
 d3.json(url, function (err, data) {
           if (err){
-                    alert("Check you Connection Please");
+            //        alert("Check you Connection Please");
           }else {
                     dashboard(data);
           }

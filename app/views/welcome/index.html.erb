@@ -3,12 +3,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
-
-<% if user_signed_in? %>
-
 <style>
                     body{
-                        
+
                     }
 
                     .d3-tip {
@@ -279,16 +276,5 @@
                     </div>
           </div>
 
-<% else %>
-          <div class="jumbotron">
-            <div class="container">
-              <h1>Welcome!</h1>
-              <p>Register to get started.</p>
-              <p>
-                <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-              </p>
-            </div>
-            <div>
-          <% end %>
 
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128061129) do
+ActiveRecord::Schema.define(version: 20170317055921) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -111,6 +111,9 @@ ActiveRecord::Schema.define(version: 20161128061129) do
     t.string   "uid",                    default: "",      null: false
     t.text     "tokens"
     t.boolean  "approved",               default: false,   null: false
+    t.string   "Sbu"
+    t.boolean  "onLeave"
+    t.index ["Sbu"], name: "index_users_on_Sbu"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

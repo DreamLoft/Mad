@@ -1,55 +1,66 @@
-<h1>Listing Users</h1>
+<style>
+.panel{
+  margin-top: 10px
+}
+</style>
+<div class="col-md-12">
 
-<ul class="list-group">
-<% @users.each do |user| %>
-<li class="list-group-item">
-<table class = "table table-hover ">
-  <tr>
-    <td style="width: 15%;">
-      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <%= user.username %>
-      <% if (user.approved== true)%>
-      (<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>)
-      <% end %>
-    </td>
-    <td style="width: 15%;">
-      <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>  <%= user.designation %>
-    </td>
-    <td style="width: 15%;">
-      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  <%= user.email %>
-    </td>
-    <td style="width: 10%;">
-      <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>  <%= user.mobileno %>
-    </td>
+  <% @users.each do |user| %>
+  <center>
+    <div id=pics, class="transitions-enabled">
+      <div class="panel panel-info ">
 
-    <td style="width: 5%;">
-      <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>  <%= user.employee_id %>
-    </td>
-    <td style="width: 10%;">
-      <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>  <%= user.weight %>  Points
-    </td>
-    <td style="width: 5%;"><%= link_to 'Details', user_path(user) %></td>
-    <td style="width: 5%;"><%= link_to 'Edit',   edit_user_path(user) %></td>
+        <div class="panel-heading">
+          <a href="<%= user_path(user) %>"> <h3><%= user.username %></h2></a>
+            <h5><%= user.designation %></h5>
+            <h6><%= user.Sbu %></h6>
+          </div>
 
-  </tr>
-</table>
-</li>
-<% end %>
-</ul>
+          <div class="panel-body">
+            <li class="list-group-item">
+              <h5>    Email : <%= user.email %></h5>
+            </li>
+            <li class="list-group-item">
+              <h5>  Mobile : +91- <%= user.mobileno %></h5>
+            </li>
 
+            <hr>
 
+            <% if(user.isadmin == true) %>
+            <span class="badge">Adminstrator</span>
+            <% end %>
 
+            <% if(user.ismanagement == true) %>
+            <span class="badge">Management</span>
+            <% end %>
 
+            <% if(user.is_project_manager == true) %>
+            <span class="badge">Project Manager</span>
+            <% end %>
 
+            <% if(user.is_project_lead == true) %>
+            <span class="badge">Project Lead</span>
+            <% end %>
 
+          </div>
 
+          <div class="panel-footer panel-primary">
 
+            <% if (user.approved== true)%>
+            Activated (<%= link_to 'Edit',   edit_user_path(user) %>)
+            <% else %>
+            Not Activated (<%= link_to 'Edit',   edit_user_path(user) %>)
+            <% end %>
+          </div>
 
+        </div>
+      </div>
+    </center>
+    <% end %>
 
-
-
-
-
-</table>
-<div class="apple_pagination">
-<%= will_paginate @users , :container => false %>
   </div>
+
+
+  <ul class="apple_pagination">
+    <%= will_paginate @users , :container => false %>
+  </ul>

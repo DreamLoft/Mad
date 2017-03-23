@@ -43,6 +43,7 @@ gem 'axlsx_rails'
 gem "d3-rails"
 gem "d3-tip-rails"
 gem 'will_paginate'
+gem 'masonry-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

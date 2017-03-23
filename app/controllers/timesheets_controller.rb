@@ -1,5 +1,5 @@
 class TimesheetsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :new, :edit, :create, :update , :destroy]
+  before_action :authenticate_user!
   #skip_before_action :verify_authenticity_token ,only: [:index, :show, :new, :edit, :create, :update , :destroy]
 def index
 #@timesheets= Timesheet.all.order("created_at DESC")
@@ -58,10 +58,10 @@ def create
  elsif (!params[:timesheet][:timespent].empty?)
          @timesheet.totaltasktime = @timesheet.timespent + (@mytimesheets.inject{|sum,x| sum +x})
   end
-   # render json: @timesheet
+
     if @timesheet.save
-         redirect_to @timesheet, notice: 'Timesheet was successfully created.'
-      #   Pusher.trigger('timesheet_channel', 'add_event', @timesheet)
+         redirect_to timesheets_path, notice: 'Timesheet was successfully created.'
+
     else
        render :new , notice: 'Failed to Create New Project. Please Make Sure You Filled All Details.'
     end
@@ -72,7 +72,7 @@ def update
 @timesheet = Timesheet.find(params[:id])
   if @timesheet.update(timesheet_params)
     redirect_to @timesheet, notice: 'Timesheet was successfully updated.'
-    #Pusher.trigger('timesheet_channel', 'update_event', @timesheet)
+
 
   else
    render :edit
@@ -90,12 +90,12 @@ def pipeline
   @projects = Project.select{|p| p.projectstatus== "Pipeline"}
   @tasks= Task.select{|t| t.task_category== "Proposal"}
   @timesheet = Timesheet.new
-    #      render json: @projects
+
     render :pipeline
 end
 
 def filter
-            #render json: params
+
     @users= User.all
     @projects = Project.all
     @tasks= Task.all

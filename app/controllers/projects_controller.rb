@@ -1,11 +1,9 @@
-#require 'pusher'
-
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :new, :edit, :create, :update , :destroy]
   #skip_before_action :verify_authenticity_token ,only: [:index, :show, :new, :edit, :create, :update , :destroy]
   def index
-
-  @projects = Project.where(:is_active => true).order('created_at DESC').paginate(:page => params[:page])
+  #  @projects= Project.all.order('created_at DESC').paginate(:page => params[:page])
+  @projects = Project.where( :is_active => true).order('created_at DESC').paginate(:page => params[:page])
 
   end
 
