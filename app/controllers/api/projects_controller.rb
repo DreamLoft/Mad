@@ -28,6 +28,6 @@ class Api::ProjectsController < Api::ApplicationController
         end
       private
       def project_params
-        params.require(:project).permit(:jobid, :projectname,:clientname ,:startdate,:projectstatus, :user_id, :sbu, :project_lead,:is_active, :project_manager, :close_remarks, :end_date)
+        params.require(:project).permit(:jobid, :projectname,:clientname ,:startdate,:projectstatus, :user_id, :sbu, :project_lead, :is_active, :project_manager, :close_remarks, :end_date)
       end
 end

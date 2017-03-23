@@ -34,6 +34,7 @@ namespace :api, defaults: {format: 'json'} do
       post '/projections',to: 'projections#create'
       #User API
       get '/users', to: 'users#index'
+      put '/users/:id', to: 'users#update'
       #Dashboard Data
       get '/data', to:'data#index'
       get '/data/:id', to:'data#show'
