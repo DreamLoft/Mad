@@ -8,7 +8,9 @@
     <h1>Hi <%= @user.username %></h1>
     <h4> Here is the list of people who have not submitted their timesheet today(<%= Date.today %>) :- </h4>
     <% @leftuser.each do |user| %>
-    <p><%= user.username %> (<%= user.designation %>)</p>
+    <ul>
+    <li><%= user.username %> (<%= user.designation %>)</li>
+  </ul>
     <% end %>
   </body>
 </html>

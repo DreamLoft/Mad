@@ -1,12 +1,17 @@
 var url= "http://ec2-35-154-49-51.ap-south-1.compute.amazonaws.com/api/data";
-d3.json(url, function (err, data) {
-          if (err){
-            //        alert("Check you Connection Please");
-          }else {
-                    dashboard(data);
-          }
-});
+dataRequest(url);
+function dataRequest(url){
+  d3.json(url, function (err, data) {
+            if (err){
+
+            }else {
+                      dashboard(data);
+            }
+  });
+
+}
 //----------------------------------------------------------Dashboard Function :- Container for all Dashboard components-------------------------------------------
+
 function dashboard(data) {
 
 

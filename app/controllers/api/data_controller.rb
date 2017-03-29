@@ -1,21 +1,21 @@
 class Api::DataController < ApplicationController
-      skip_before_action :verify_authenticity_token ,only: [:index, :show, :new, :edit, :create, :update , :destroy]
+      skip_before_action :verify_authenticity_token
       def index
-            @projects= Project.all
-            @tasks= Task.all
-            @timesheets= Timesheet.all
-            @users= User.all
-            @projections= Projection.all
+            @projects= Project.select('id,projectname,sbu')
+            @tasks= Task.select('id,taskname,task_category')
+            @timesheets= Timesheet.select('id,project_id,task_id,Tdate,timespent,feeling,user_id')
+            @users= User.select('id,username,designation,weight,Sbu')
+          #  @projections= Projection.all
             @data=MyClass.new
             @data.set_project(@projects)
             @data.set_task(@tasks)
             @data.set_timesheet(@timesheets)
             @data.set_user(@users)
-            @data.set_projection(@projections)
+    #        @data.set_projection(@projections)
             render json: @data
       end
       def show
-        
+
       end
 end
 class MyClass
